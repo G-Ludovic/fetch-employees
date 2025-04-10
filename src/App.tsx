@@ -1,31 +1,20 @@
+import "./App.css";
+
+import UserProfile from "./components/UserProfile";
+import UserContext from "./contexts/UserContext";
+
 import { useState } from "react";
 
-import MovieList from './components/MovieList';
-import MovieContext from './contexts/MovieContext';
-
 function App() {
-  const [movies, setMovies] = useState([
-    {
-      movie_id: 1,
-      title: 'Harry Potter and the Sorcerers Stone',
-      release_year: 2001,
-    },
-    {
-      movie_id: 2,
-      title: 'Harry Potter and the Chamber of Secrets',
-      release_year: 2002,
-    },
-    {
-      movie_id: 3,
-      title: 'Harry Potter and the Prison of Azkaban',
-      release_year: 2004,
-    },
-  ]);
+
+  // Création du state isOnline (valeur initiale : false)
+  const [isOnline, setIsOnline] = useState(false);
 
   return (
-    <MovieContext.Provider value={{ movies: movies, setMovies: setMovies }}>
-      <MovieList />
-    </MovieContext.Provider>
+    // Utilisation du Provider pour partager les données globales
+    <UserProfile.Provider value={{ isOnline : isOnline, setIsOnline: setIsOnline }}>
+      <UserProfile />
+    </UserProfile.Provider>
   );
 }
 
