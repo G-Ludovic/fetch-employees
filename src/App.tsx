@@ -12,7 +12,7 @@ function App() {
 
   return (
     // Utilisation du Provider pour partager les données globales
-    <UserContext.Provider value={{isOnline : isOnline, setIsOnline: setIsOnline}}>
+    <UserContext.Provider value={{ isOnline: isOnline, setIsOnline: setIsOnline }}>
       <UserProfile/>
     </UserContext.Provider>
   )
