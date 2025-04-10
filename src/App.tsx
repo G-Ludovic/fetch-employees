@@ -1,35 +1,32 @@
-import './App.css';
-import EmployeeCard from './components/EmployeeCard';
-import { useState } from 'react';
+import { useState } from "react";
 
-const sampleEmployee = {
-  name: {
-    first: "Charlie",
-    last: "Thompson",
-  },
-  email: "charlie.thompson@example.com",
-  picture: {
-    medium: "https://randomuser.me/api/portraits/med/men/40.jpg",
-  },
-};
+import MovieList from './components/MovieList';
+import MovieContext from './contexts/MovieContext';
 
 function App() {
-  const [employee, setEmployee] = useState(sampleEmployee);
-
-  const getEmployee = () => {
-    fetch("https://randomuser.me/api?nat=en")
-      .then((response) => response.json())
-      .then((data) => {
-        setEmployee(data.results[0]);
-      });
-  };
+  const [movies, setMovies] = useState([
+    {
+      movie_id: 1,
+      title: 'Harry Potter and the Sorcerers Stone',
+      release_year: 2001,
+    },
+    {
+      movie_id: 2,
+      title: 'Harry Potter and the Chamber of Secrets',
+      release_year: 2002,
+    },
+    {
+      movie_id: 3,
+      title: 'Harry Potter and the Prison of Azkaban',
+      release_year: 2004,
+    },
+  ]);
 
   return (
-    <div className='App'>
-      <EmployeeCard employee={employee} />
-      <button type="button" onClick={getEmployee}>Get employee</button>
-    </div>
+    <MovieContext.Provider value={{ movies: movies, setMovies: setMovies }}>
+      <MovieList />
+    </MovieContext.Provider>
   );
 }
 
-export default App
+export default App;
